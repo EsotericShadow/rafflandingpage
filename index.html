@@ -9,6 +9,7 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      background: #1a1a2e;
     }
     #scroll-container {
       height: 4500px;
@@ -26,16 +27,18 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 200vw;
+      height: 100vh;
+      object-fit: cover;
       z-index: 0;
     }
     .day-sky {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 200vw;
+      height: 100vh;
+      object-fit: cover;
       z-index: 0;
       opacity: 0;
     }
@@ -43,13 +46,14 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
-      height: 20vh; /* Increased height to match storyboard */
+      width: 100vw;
+      height: 20vh;
+      object-fit: cover;
       z-index: 1;
     }
     .star {
       position: absolute;
-      width: 5px; /* Larger stars to match storyboard */
+      width: 5px;
       height: 5px;
       background: white;
       opacity: 1;
@@ -59,23 +63,26 @@
     .star3 { top: 5vh; left: 70vw; }
     .moon {
       position: absolute;
-      top: 5vh; /* Adjusted position */
+      top: 5vh;
       right: 5vw;
-      width: 100px; /* Larger to match storyboard */
+      width: 100px;
       height: 100px;
+      z-index: 1;
     }
     .sun {
       position: absolute;
       top: 5vh;
       left: 5vw;
-      width: 100px; /* Larger to match storyboard */
+      width: 100px;
       height: 100px;
       opacity: 0;
+      z-index: 1;
     }
     .cloud {
       position: absolute;
-      width: 200px; /* Larger clouds to match storyboard */
+      width: 200px;
       height: 100px;
+      z-index: 1;
     }
     .cloud1 { top: 15vh; left: 10vw; }
     .cloud2 { top: 20vh; left: 40vw; }
@@ -83,45 +90,41 @@
       position: absolute;
       top: -10px;
       left: -10px;
-      width: 10px; /* Larger to match storyboard */
+      width: 10px;
       height: 10px;
       background: white;
+      z-index: 2;
     }
     .degen, .degen-transformed {
       position: absolute;
-      bottom: 20vh; /* Adjusted to sit on the road */
-      width: 100px; /* Larger to match storyboard proportions */
+      bottom: 20vh;
+      width: 100px;
       height: 160px;
       z-index: 2;
     }
-    .degen {
-      left: -15%;
-    }
-    .degen-transformed {
-      left: 45%;
-      opacity: 0;
-    }
+    .degen { left: -15vw; }
+    .degen-transformed { left: 45vw; opacity: 0; }
     .castle {
       position: absolute;
       bottom: 20vh;
-      left: 115%;
-      width: 200px; /* Larger to match storyboard */
+      left: 115vw;
+      width: 200px;
       height: 240px;
       z-index: 2;
     }
     .wizard {
       position: absolute;
       bottom: 20vh;
-      left: 115%;
-      width: 100px; /* Larger to match storyboard */
+      left: 115vw;
+      width: 100px;
       height: 160px;
       z-index: 3;
     }
     .orb {
       position: absolute;
-      top: 40vh; /* Adjusted position */
-      left: 115%;
-      width: 40px; /* Larger to match storyboard */
+      top: 40vh;
+      left: 115vw;
+      width: 40px;
       height: 40px;
       background: yellow;
       border-radius: 50%;
@@ -130,10 +133,10 @@
     }
     .level-up {
       position: absolute;
-      top: 30vh; /* Adjusted position */
+      top: 30vh;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 96px; /* Larger to match storyboard */
+      font-size: 96px;
       color: yellow;
       background: black;
       padding: 20px;
@@ -143,8 +146,8 @@
     .poof {
       position: absolute;
       bottom: 20vh;
-      left: 45%;
-      width: 160px; /* Larger to match storyboard */
+      left: 45vw;
+      width: 160px;
       height: 160px;
       background: white;
       border-radius: 50%;
@@ -154,8 +157,8 @@
     .treasure-chest {
       position: absolute;
       bottom: 20vh;
-      left: 50%;
-      width: 120px; /* Larger to match storyboard */
+      left: 50vw;
+      width: 120px;
       height: 80px;
       background: brown;
       z-index: 3;
@@ -166,8 +169,8 @@
     .sports-car {
       position: absolute;
       bottom: 20vh;
-      left: 115%;
-      width: 200px; /* Larger to match storyboard */
+      left: 115vw;
+      width: 200px;
       height: 100px;
       background: black;
       z-index: 3;
@@ -210,6 +213,18 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
+    // Sky parallax effect
+    gsap.to(".night-sky, .day-sky", {
+      x: "50vw",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#scroll-container",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true
+      }
+    });
+
     // Twinkle stars
     gsap.to(".star1", { opacity: 0.5, repeat: -1, yoyo: true, duration: 1 });
     gsap.to(".star2", { opacity: 0.5, repeat: -1, yoyo: true, duration: 1.5 });
@@ -227,14 +242,12 @@
       repeat: -1,
       repeatDelay: 5,
       ease: "power2.in",
-      onRepeat: () => {
-        gsap.set(".shooting-star", { x: "-10px", y: "-10px" });
-      }
+      onRepeat: () => gsap.set(".shooting-star", { x: "-10px", y: "-10px" })
     });
 
-    // Degen walks from -15% to 45% (scroll 500-2000px)
+    // Degen walks from -15% to 45%
     gsap.to(".degen", {
-      left: "45%",
+      left: "45vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -244,9 +257,9 @@
       }
     });
 
-    // Castle moves from 115% to 85% (scroll 1500-2500px)
+    // Castle moves from 115% to 85%
     gsap.to(".castle", {
-      left: "85%",
+      left: "85vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -256,9 +269,9 @@
       }
     });
 
-    // Wizard moves from 115% to 55% (scroll 1600-3000px)
+    // Wizard moves from 115% to 55%
     gsap.to(".wizard", {
-      left: "55%",
+      left: "55vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -268,9 +281,9 @@
       }
     });
 
-    // Castle continues to 75% (scroll 1600-3000px)
+    // Castle continues to 75%
     gsap.to(".castle", {
-      left: "75%",
+      left: "75vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -280,10 +293,10 @@
       }
     });
 
-    // Orb appears and moves to degen (scroll 2000-2500px)
+    // Orb appears and moves to degen
     gsap.to(".orb", {
       opacity: 1,
-      left: "45%",
+      left: "45vw",
       top: "20vh",
       ease: "linear",
       scrollTrigger: {
@@ -294,7 +307,7 @@
       }
     });
 
-    // "LEVEL UP" appears and disappears (scroll 2500-2600px)
+    // "LEVEL UP" appears and fades
     gsap.to(".level-up", {
       opacity: 1,
       scrollTrigger: {
@@ -314,7 +327,7 @@
       }
     });
 
-    // Transformation timeline (scroll 3000-3050px)
+    // Transformation sequence
     gsap.timeline({
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -331,10 +344,10 @@
     .to(".sun", { opacity: 1, duration: 1 }, 0)
     .to(".poof", { opacity: 0, scale: 1, duration: 0.5 }, 0.5);
 
-    // Treasure chest appears (scroll 3500-4000px)
+    // Treasure chest appears
     gsap.to(".treasure-chest", {
       opacity: 1,
-      left: "50%",
+      left: "50vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -344,9 +357,9 @@
       }
     });
 
-    // Sports car drives in (scroll 4000-4500px)
+    // Sports car drives in
     gsap.to(".sports-car", {
-      left: "50%",
+      left: "50vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
