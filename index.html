@@ -28,7 +28,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: darkblue;
       z-index: 0;
     }
     .day-sky {
@@ -37,7 +36,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: skyblue;
       z-index: 0;
       opacity: 0;
     }
@@ -47,7 +45,6 @@
       left: 0;
       width: 100%;
       height: 10vh;
-      background: gray;
       z-index: 1;
     }
     .star {
@@ -66,15 +63,19 @@
       right: 10vw;
       width: 50px;
       height: 50px;
-      background: yellow;
-      border-radius: 50%;
+    }
+    .sun {
+      position: absolute;
+      top: 10vh;
+      left: 10vw;
+      width: 50px;
+      height: 50px;
+      opacity: 0;
     }
     .cloud {
       position: absolute;
       width: 100px;
       height: 50px;
-      background: white;
-      opacity: 0.5;
     }
     .cloud1 { top: 20vh; left: 10vw; }
     .cloud2 { top: 25vh; left: 40vw; }
@@ -91,10 +92,7 @@
       bottom: 30vh;
       width: 50px;
       height: 80px;
-      background: #9a8c98;
       z-index: 2;
-      text-align: center;
-      color: white;
     }
     .degen {
       left: -15%;
@@ -109,10 +107,7 @@
       left: 115%;
       width: 100px;
       height: 120px;
-      background: #7209b7;
       z-index: 2;
-      text-align: center;
-      color: white;
     }
     .wizard {
       position: absolute;
@@ -120,10 +115,7 @@
       left: 115%;
       width: 50px;
       height: 80px;
-      background: #f72585;
       z-index: 3;
-      text-align: center;
-      color: white;
     }
     .orb {
       position: absolute;
@@ -180,28 +172,32 @@
       text-align: center;
       color: white;
     }
+    img {
+      image-rendering: pixelated;
+    }
   </style>
 </head>
 <body>
   <div id="scroll-container">
     <div class="scene">
-      <div class="night-sky"></div>
-      <div class="day-sky"></div>
-      <div class="road"></div>
+      <img class="night-sky" src="assets/night_sky.png" alt="Night Sky">
+      <img class="day-sky" src="assets/day_sky.png" alt="Day Sky">
+      <img class="road" src="assets/road.png" alt="Road">
       <div class="star star1"></div>
       <div class="star star2"></div>
       <div class="star star3"></div>
-      <div class="moon"></div>
-      <div class="cloud cloud1"></div>
-      <div class="cloud cloud2"></div>
+      <img class="moon" src="assets/moon.png" alt="Moon">
+      <img class="sun" src="assets/sun.png" alt="Sun">
+      <img class="cloud cloud1" src="assets/cloud1.png" alt="Cloud 1">
+      <img class="cloud cloud2" src="assets/cloud2.png" alt="Cloud 2">
       <div class="shooting-star"></div>
-      <div class="degen">Degen</div>
-      <div class="castle">Castle</div>
-      <div class="wizard">Wizard</div>
+      <img class="degen" src="assets/degen.png" alt="Degen">
+      <img class="castle" src="assets/castle.png" alt="Castle">
+      <img class="wizard" src="assets/wizard.png" alt="Wizard">
       <div class="orb"></div>
       <div class="level-up">LEVEL UP</div>
       <div class="poof"></div>
-      <div class="degen-transformed">Degen</div>
+      <img class="degen-transformed" src="assets/degen_transformed.png" alt="Degen Transformed">
       <div class="treasure-chest">Chest</div>
       <div class="sports-car">Car</div>
     </div>
@@ -330,6 +326,7 @@
     .to(".degen-transformed", { opacity: 1, duration: 0.5 }, 0)
     .to(".night-sky", { opacity: 0, duration: 1 }, 0)
     .to(".day-sky", { opacity: 1, duration: 1 }, 0)
+    .to(".sun", { opacity: 1, duration: 1 }, 0)
     .to(".poof", { opacity: 0, scale: 1, duration: 0.5 }, 0.5);
 
     // Treasure chest appears (scroll 3500-4000px)
