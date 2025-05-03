@@ -41,16 +41,16 @@
     }
     .road {
       position: absolute;
-      bottom: 20vh;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 10vh;
+      height: 20vh; /* Increased height to match storyboard */
       z-index: 1;
     }
     .star {
       position: absolute;
-      width: 2px;
-      height: 2px;
+      width: 5px; /* Larger stars to match storyboard */
+      height: 5px;
       background: white;
       opacity: 1;
     }
@@ -59,39 +59,39 @@
     .star3 { top: 5vh; left: 70vw; }
     .moon {
       position: absolute;
-      top: 10vh;
-      right: 10vw;
-      width: 50px;
-      height: 50px;
+      top: 5vh; /* Adjusted position */
+      right: 5vw;
+      width: 100px; /* Larger to match storyboard */
+      height: 100px;
     }
     .sun {
       position: absolute;
-      top: 10vh;
-      left: 10vw;
-      width: 50px;
-      height: 50px;
+      top: 5vh;
+      left: 5vw;
+      width: 100px; /* Larger to match storyboard */
+      height: 100px;
       opacity: 0;
     }
     .cloud {
       position: absolute;
-      width: 100px;
-      height: 50px;
+      width: 200px; /* Larger clouds to match storyboard */
+      height: 100px;
     }
-    .cloud1 { top: 20vh; left: 10vw; }
-    .cloud2 { top: 25vh; left: 40vw; }
+    .cloud1 { top: 15vh; left: 10vw; }
+    .cloud2 { top: 20vh; left: 40vw; }
     .shooting-star {
       position: absolute;
       top: -10px;
       left: -10px;
-      width: 5px;
-      height: 5px;
+      width: 10px; /* Larger to match storyboard */
+      height: 10px;
       background: white;
     }
     .degen, .degen-transformed {
       position: absolute;
-      bottom: 30vh;
-      width: 50px;
-      height: 80px;
+      bottom: 20vh; /* Adjusted to sit on the road */
+      width: 100px; /* Larger to match storyboard proportions */
+      height: 160px;
       z-index: 2;
     }
     .degen {
@@ -103,26 +103,26 @@
     }
     .castle {
       position: absolute;
-      bottom: 30vh;
+      bottom: 20vh;
       left: 115%;
-      width: 100px;
-      height: 120px;
+      width: 200px; /* Larger to match storyboard */
+      height: 240px;
       z-index: 2;
     }
     .wizard {
       position: absolute;
-      bottom: 30vh;
+      bottom: 20vh;
       left: 115%;
-      width: 50px;
-      height: 80px;
+      width: 100px; /* Larger to match storyboard */
+      height: 160px;
       z-index: 3;
     }
     .orb {
       position: absolute;
-      top: 50vh;
+      top: 40vh; /* Adjusted position */
       left: 115%;
-      width: 20px;
-      height: 20px;
+      width: 40px; /* Larger to match storyboard */
+      height: 40px;
       background: yellow;
       border-radius: 50%;
       z-index: 4;
@@ -130,20 +130,22 @@
     }
     .level-up {
       position: absolute;
-      top: 40vh;
+      top: 30vh; /* Adjusted position */
       left: 50%;
       transform: translateX(-50%);
-      font-size: 48px;
+      font-size: 96px; /* Larger to match storyboard */
       color: yellow;
+      background: black;
+      padding: 20px;
       z-index: 5;
       opacity: 0;
     }
     .poof {
       position: absolute;
-      bottom: 30vh;
+      bottom: 20vh;
       left: 45%;
-      width: 80px;
-      height: 80px;
+      width: 160px; /* Larger to match storyboard */
+      height: 160px;
       background: white;
       border-radius: 50%;
       z-index: 4;
@@ -151,10 +153,10 @@
     }
     .treasure-chest {
       position: absolute;
-      bottom: 30vh;
+      bottom: 20vh;
       left: 50%;
-      width: 60px;
-      height: 40px;
+      width: 120px; /* Larger to match storyboard */
+      height: 80px;
       background: brown;
       z-index: 3;
       opacity: 0;
@@ -163,10 +165,10 @@
     }
     .sports-car {
       position: absolute;
-      bottom: 30vh;
+      bottom: 20vh;
       left: 115%;
-      width: 100px;
-      height: 50px;
+      width: 200px; /* Larger to match storyboard */
+      height: 100px;
       background: black;
       z-index: 3;
       text-align: center;
@@ -282,7 +284,7 @@
     gsap.to(".orb", {
       opacity: 1,
       left: "45%",
-      top: "30vh",
+      top: "20vh",
       ease: "linear",
       scrollTrigger: {
         trigger: "#scroll-container",
