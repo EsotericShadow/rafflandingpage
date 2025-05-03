@@ -23,7 +23,7 @@
       height: 100vh;
       overflow: hidden;
     }
-    .night-sky {
+    .night-sky, .day-sky {
       position: absolute;
       top: 0;
       left: 0;
@@ -32,14 +32,11 @@
       object-fit: cover;
       z-index: 0;
     }
+    .night-sky {
+      background: url('assets/night_sky.png') repeat-x;
+    }
     .day-sky {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 0;
+      background: url('assets/day_sky.png') repeat-x;
       opacity: 0;
     }
     .road {
@@ -48,6 +45,7 @@
       left: 0;
       width: 100vw;
       height: 20vh;
+      background: url('assets/road.png') repeat-x;
       object-fit: cover;
       z-index: 1;
     }
@@ -97,7 +95,7 @@
     }
     .degen, .degen-transformed {
       position: absolute;
-      bottom: 20vh;
+      bottom: 22vh;
       width: 100px;
       height: 160px;
       z-index: 2;
@@ -106,7 +104,7 @@
     .degen-transformed { left: 45vw; opacity: 0; }
     .castle {
       position: absolute;
-      bottom: 20vh;
+      bottom: 22vh;
       left: 115vw;
       width: 200px;
       height: 240px;
@@ -114,7 +112,7 @@
     }
     .wizard {
       position: absolute;
-      bottom: 20vh;
+      bottom: 22vh;
       left: 115vw;
       width: 100px;
       height: 160px;
@@ -145,7 +143,7 @@
     }
     .poof {
       position: absolute;
-      bottom: 20vh;
+      bottom: 22vh;
       left: 45vw;
       width: 160px;
       height: 160px;
@@ -156,7 +154,7 @@
     }
     .treasure-chest {
       position: absolute;
-      bottom: 20vh;
+      bottom: 22vh;
       left: 50vw;
       width: 120px;
       height: 80px;
@@ -168,7 +166,7 @@
     }
     .sports-car {
       position: absolute;
-      bottom: 20vh;
+      bottom: 22vh;
       left: 115vw;
       width: 200px;
       height: 100px;
@@ -185,9 +183,9 @@
 <body>
   <div id="scroll-container">
     <div class="scene">
-      <img class="night-sky" src="assets/night_sky.png" alt="Night Sky">
-      <img class="day-sky" src="assets/day_sky.png" alt="Day Sky">
-      <img class="road" src="assets/road.png" alt="Road">
+      <div class="night-sky"></div>
+      <div class="day-sky"></div>
+      <div class="road"></div>
       <div class="star star1"></div>
       <div class="star star2"></div>
       <div class="star star3"></div>
@@ -213,34 +211,38 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Sky parallax effect
+    // Sky parallax effect with looping
     gsap.to(".night-sky, .day-sky", {
-      x: "50vw",
-      ease: "none",
+      x: "-50vw",
+      ease: "linear",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: "top top",
         end: "bottom bottom",
-        scrub: true
+        scrub: 1
+      },
+      onUpdate: function() {
+        if (this.target[0]._gsap.x > 0) this.target[0]._gsap.x -= 100;
+        if (this.target[0]._gsap.x < -100) this.target[0]._gsap.x += 100;
       }
     });
 
     // Twinkle stars
-    gsap.to(".star1", { opacity: 0.5, repeat: -1, yoyo: true, duration: 1 });
-    gsap.to(".star2", { opacity: 0.5, repeat: -1, yoyo: true, duration: 1.5 });
-    gsap.to(".star3", { opacity: 0.5, repeat: -1, yoyo: true, duration: 0.8 });
+    gsap.to(".star1", { opacity: 0.5, repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
+    gsap.to(".star2", { opacity: 0.5, repeat: -1, yoyo: true, duration: 2.5, ease: "power1.inOut" });
+    gsap.to(".star3", { opacity: 0.5, repeat: -1, yoyo: true, duration: 2.2, ease: "power1.inOut" });
 
     // Drift clouds
-    gsap.to(".cloud1", { x: "-200vw", duration: 30, repeat: -1, ease: "linear" });
-    gsap.to(".cloud2", { x: "-200vw", duration: 40, repeat: -1, ease: "linear" });
+    gsap.to(".cloud1", { x: "-200vw", duration: 60, repeat: -1, ease: "linear" });
+    gsap.to(".cloud2", { x: "-200vw", duration: 70, repeat: -1, ease: "linear" });
 
     // Shooting star
     gsap.to(".shooting-star", {
       x: "100vw",
       y: "100vh",
-      duration: 2,
+      duration: 4,
       repeat: -1,
-      repeatDelay: 5,
+      repeatDelay: 10,
       ease: "power2.in",
       onRepeat: () => gsap.set(".shooting-star", { x: "-10px", y: "-10px" })
     });
@@ -248,48 +250,36 @@
     // Degen walks from -15% to 45%
     gsap.to(".degen", {
       left: "45vw",
-      ease: "none",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: "500 top",
-        end: "2000 top",
-        scrub: true
+        end: "1500 top",
+        scrub: 2
       }
     });
 
     // Castle moves from 115% to 85%
     gsap.to(".castle", {
       left: "85vw",
-      ease: "none",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: "1500 top",
         end: "2500 top",
-        scrub: true
+        scrub: 2
       }
     });
 
     // Wizard moves from 115% to 55%
     gsap.to(".wizard", {
       left: "55vw",
-      ease: "none",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: "1600 top",
+        start: "2000 top",
         end: "3000 top",
-        scrub: true
-      }
-    });
-
-    // Castle continues to 75%
-    gsap.to(".castle", {
-      left: "75vw",
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#scroll-container",
-        start: "1600 top",
-        end: "3000 top",
-        scrub: true
+        scrub: 2
       }
     });
 
@@ -298,74 +288,77 @@
       opacity: 1,
       left: "45vw",
       top: "20vh",
-      ease: "linear",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: "2000 top",
-        end: "2500 top",
-        scrub: true
+        start: "2500 top",
+        end: "3000 top",
+        scrub: 2
       }
     });
 
     // "LEVEL UP" appears and fades
     gsap.to(".level-up", {
       opacity: 1,
+      duration: 1,
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: "2500 top",
-        end: "2550 top",
-        scrub: true
+        start: "3000 top",
+        end: "3100 top",
+        scrub: 2
       }
     });
     gsap.to(".level-up", {
       opacity: 0,
+      duration: 1,
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: "2550 top",
-        end: "2600 top",
-        scrub: true
+        start: "3100 top",
+        end: "3200 top",
+        scrub: 2
       }
     });
 
     // Transformation sequence
-    gsap.timeline({
+    const transformTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: "3000 top",
-        end: "3050 top",
-        scrub: true
+        start: "3200 top",
+        end: "3500 top",
+        scrub: 2
       }
-    })
-    .to(".poof", { opacity: 1, scale: 1.5, duration: 0.5 })
-    .to(".degen", { opacity: 0, duration: 0.5 }, 0)
-    .to(".degen-transformed", { opacity: 1, duration: 0.5 }, 0)
-    .to(".night-sky", { opacity: 0, duration: 1 }, 0)
-    .to(".day-sky", { opacity: 1, duration: 1 }, 0)
-    .to(".sun", { opacity: 1, duration: 1 }, 0)
-    .to(".poof", { opacity: 0, scale: 1, duration: 0.5 }, 0.5);
+    });
+    transformTimeline
+      .to(".poof", { opacity: 1, scale: 1.5, duration: 1, ease: "power1.inOut" })
+      .to(".degen", { opacity: 0, duration: 1, ease: "power1.inOut" }, 0)
+      .to(".degen-transformed", { opacity: 1, duration: 1, ease: "power1.inOut" }, 0)
+      .to(".night-sky", { opacity: 0, duration: 2, ease: "power1.inOut" }, 0)
+      .to(".day-sky", { opacity: 1, duration: 2, ease: "power1.inOut" }, 0)
+      .to(".sun", { opacity: 1, duration: 2, ease: "power1.inOut" }, 0)
+      .to(".poof", { opacity: 0, scale: 1, duration: 1, ease: "power1.inOut" }, 1);
 
     // Treasure chest appears
     gsap.to(".treasure-chest", {
       opacity: 1,
       left: "50vw",
-      ease: "none",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: "3500 top",
         end: "4000 top",
-        scrub: true
+        scrub: 2
       }
     });
 
     // Sports car drives in
     gsap.to(".sports-car", {
       left: "50vw",
-      ease: "none",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: "4000 top",
         end: "4500 top",
-        scrub: true
+        scrub: 2
       }
     });
   </script>
