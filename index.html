@@ -61,8 +61,8 @@
     /* Stars for twinkling effect */
     .star {
       position: absolute;
-      width: 5px;
-      height: 5px;
+      width: 3px; /* Smaller for mobile */
+      height: 3px;
       background: white;
       border-radius: 50%;
       opacity: 1;
@@ -77,8 +77,8 @@
       position: absolute;
       top: 5vh;
       left: 95vw;
-      width: 100px;
-      height: 100px;
+      width: 60px; /* Adjusted for mobile */
+      height: 60px;
       z-index: 1;
     }
 
@@ -86,8 +86,8 @@
       position: absolute;
       top: 5vh;
       left: 95vw;
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
       z-index: 1;
       opacity: 0;
     }
@@ -95,8 +95,8 @@
     /* Clouds */
     .cloud {
       position: absolute;
-      width: 200px;
-      height: 100px;
+      width: 120px; /* Adjusted for mobile */
+      height: 60px;
       z-index: 1;
     }
 
@@ -108,8 +108,8 @@
       position: absolute;
       bottom: 20vh;
       left: -40vw;
-      width: 100px;
-      height: 160px;
+      width: 80px; /* Adjusted for mobile */
+      height: 128px;
       z-index: 2;
     }
 
@@ -117,8 +117,8 @@
       position: absolute;
       bottom: 20vh;
       left: 45vw;
-      width: 100px;
-      height: 160px;
+      width: 80px;
+      height: 128px;
       z-index: 2;
       opacity: 0;
     }
@@ -127,8 +127,8 @@
       position: absolute;
       bottom: 20vh;
       left: 140vw;
-      width: 200px;
-      height: 240px;
+      width: 160px; /* Adjusted for mobile */
+      height: 192px;
       z-index: 2;
     }
 
@@ -136,8 +136,8 @@
       position: absolute;
       bottom: 20vh;
       left: 140vw;
-      width: 100px;
-      height: 160px;
+      width: 80px; /* Adjusted for mobile */
+      height: 128px;
       z-index: 3;
     }
 
@@ -146,8 +146,8 @@
       top: 30vh;
       left: 50%;
       transform: translateX(-50%);
-      width: 200px;
-      height: 200px;
+      width: 150px; /* Adjusted for mobile */
+      height: 150px;
       z-index: 5;
       opacity: 0;
     }
@@ -156,8 +156,8 @@
       position: absolute;
       bottom: 20vh;
       left: 45vw;
-      width: 160px;
-      height: 160px;
+      width: 100px; /* Adjusted for mobile */
+      height: 100px;
       background: white;
       border-radius: 50%;
       z-index: 4;
@@ -169,8 +169,8 @@
       position: absolute;
       bottom: 20vh;
       left: 50vw;
-      width: 120px;
-      height: 80px;
+      width: 80px; /* Adjusted for mobile */
+      height: 53px;
       z-index: 3;
       opacity: 0;
     }
@@ -179,8 +179,8 @@
       position: absolute;
       bottom: 10vh;
       left: -40vw;
-      width: 450px;
-      height: 225px;
+      width: 300px; /* Adjusted for mobile */
+      height: 150px;
       z-index: 3;
     }
 
@@ -188,8 +188,8 @@
       position: absolute;
       bottom: 10vh;
       left: 40vw;
-      width: 450px;
-      height: 225px;
+      width: 300px;
+      height: 150px;
       z-index: 3;
       opacity: 0;
     }
@@ -197,6 +197,8 @@
     /* Image Styling */
     img {
       image-rendering: pixelated;
+      width: 100%;
+      height: auto;
     }
 
     /* Lead Form */
@@ -212,29 +214,198 @@
 
     #lead-form form {
       text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    #lead-form h2 {
+      font-size: 1.5rem;
     }
 
     #lead-form input {
       display: block;
       margin: 10px auto;
-      padding: 10px;
-      width: 200px;
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 1rem;
     }
 
     #lead-form button {
-      padding: 10px 20px;
+      padding: 8px 16px;
       background: #4CAF50;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      font-size: 1rem;
       transition: background 0.3s;
     }
 
     #lead-form button:hover {
       background: #45a049;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      #scroll-container {
+        height: 14000px; /* Increased for slower scroll on mobile */
+      }
+
+      .night-sky, .day-sky {
+        width: 300vw; /* Wider for smoother parallax */
+      }
+
+      .road {
+        width: 300vw;
+        height: 15vh;
+      }
+
+      .moon, .sun {
+        width: 50px;
+        height: 50px;
+        top: 8vh;
+      }
+
+      .cloud {
+        width: 100px;
+        height: 50px;
+      }
+
+      .degen, .degen-transformed {
+        width: 60px;
+        height: 96px;
+        bottom: 15vh;
+      }
+
+      .castle {
+        width: 120px;
+        height: 144px;
+        bottom: 15vh;
+      }
+
+      .wizard {
+        width: 60px;
+        height: 96px;
+        bottom: 15vh;
+      }
+
+      .level-up {
+        width: 120px;
+        height: 120px;
+        top: 35vh;
+      }
+
+      .poof {
+        width: 80px;
+        height: 80px;
+        bottom: 15vh;
+      }
+
+      .treasure-chest {
+        width: 60px;
+        height: 40px;
+        bottom: 15vh;
+      }
+
+      .sports-car, .occupied-sports-car {
+        width: 200px;
+        height: 100px;
+        bottom: 10vh;
+      }
+
+      #lead-form h2 {
+        font-size: 1.2rem;
+      }
+
+      #lead-form input {
+        padding: 6px;
+        font-size: 0.9rem;
+      }
+
+      #lead-form button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .star {
+        width: 2px;
+        height: 2px;
+      }
+
+      .moon, .sun {
+        width: 40px;
+        height: 40px;
+        top: 10vh;
+      }
+
+      .cloud {
+        width: 80px;
+        height: 40px;
+      }
+
+      .degen, .degen-transformed {
+        width: 50px;
+        height: 80px;
+        bottom: 12vh;
+      }
+
+      .castle {
+        width: 100px;
+        height: 120px;
+        bottom: 12vh;
+      }
+
+      .wizard {
+        width: 50px;
+        height: 80px;
+        bottom: 12vh;
+      }
+
+      .level-up {
+        width: 100px;
+        height: 100px;
+        top: 40vh;
+      }
+
+      .poof {
+        width: 60px;
+        height: 60px;
+        bottom: 12vh;
+      }
+
+      .treasure-chest {
+        width: 50px;
+        height: 33px;
+        bottom: 12vh;
+      }
+
+      .sports-car, .occupied-sports-car {
+        width: 150px;
+        height: 75px;
+        bottom: 8vh;
+      }
+
+      #lead-form form {
+        width: 95%;
+      }
+
+      #lead-form h2 {
+        font-size: 1rem;
+      }
+
+      #lead-form input {
+        max-width: 250px;
+        font-size: 0.8rem;
+      }
+
+      #lead-form button {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
@@ -320,7 +491,7 @@
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 12000,
+        end: 14000,
         scrub: 3
       }
     });
@@ -331,7 +502,7 @@
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 12000,
+        end: 14000,
         scrub: 3
       }
     });
