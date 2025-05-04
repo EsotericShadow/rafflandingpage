@@ -135,10 +135,8 @@
       top: 30vh;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 96px;
-      color: yellow;
-      background: black;
-      padding: 20px;
+      width: 300px; /* Adjust based on actual image size */
+      height: 100px; /* Adjust based on actual image size */
       z-index: 5;
       opacity: 0;
     }
@@ -159,11 +157,8 @@
       left: 50vw;
       width: 120px;
       height: 80px;
-      background: brown;
       z-index: 3;
       opacity: 0;
-      text-align: center;
-      color: white;
     }
     .sports-car {
       position: absolute;
@@ -171,10 +166,8 @@
       left: 115vw;
       width: 200px;
       height: 100px;
-      background: black;
       z-index: 3;
-      text-align: center;
-      color: white;
+      opacity: 0;
     }
     img {
       image-rendering: pixelated;
@@ -199,11 +192,11 @@
       <img class="castle" src="assets/castle.png" alt="Castle">
       <img class="wizard" src="assets/wizard.png" alt="Wizard">
       <div class="orb"></div>
-      <div class="level-up">LEVEL UP</div>
+      <img class="level-up" src="assets/level_up.png" alt="Level Up">
       <div class="poof"></div>
       <img class="degen-transformed" src="assets/degen_transformed.png" alt="Degen Transformed">
-      <div class="treasure-chest">Chest</div>
-      <div class="sports-car">Car</div>
+      <img class="treasure-chest" src="assets/chest.png" alt="Treasure Chest">
+      <img class="sports-car" src="assets/sports_car.png" alt="Sports Car">
     </div>
   </div>
 
@@ -347,9 +340,10 @@
       }
     });
 
-    // Sports car drives in
+    // Sports car drives in and fades in
     gsap.to(".sports-car", {
       left: "50vw",
+      opacity: 1,
       ease: "power1.inOut",
       scrollTrigger: {
         trigger: "#scroll-container",
