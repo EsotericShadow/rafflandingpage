@@ -370,9 +370,9 @@
       }
     });
     carTransformTimeline
-      .to(".degen-transformed", { opacity: 0, duration: 0.5 })
-      .to(".sports-car", { opacity: 0, duration: 0.5 }, "<")
-      .to(".occupied-sports-car", { opacity: 1, duration: 0.5 }, "<");
+      .to(".degen-transformed", { opacity: 0, duration: 1.5 })
+      .to(".sports-car", { opacity: 0, duration: 0..25 }, "<")
+      .to(".occupied-sports-car", { opacity: 1, duration: 0.25 }, "<");
 
     // Drive past Wizard and Castle (3200 to 5000px)
     gsap.to(".occupied-sports-car", {
@@ -386,7 +386,7 @@
       }
     });
     gsap.to(".wizard", {
-      left: "-15vw",
+      left: "55vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
@@ -396,7 +396,7 @@
       }
     });
     gsap.to(".castle", {
-      left: "-15vw",
+      left: "70vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
