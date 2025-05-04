@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raffle Landing page</title>
+  <title>Raffle Landing Page</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       background: #1a1a2e;
+      font-family: Arial, sans-serif;
     }
+
     #scroll-container {
-      height: 10000px; /* Increased to allow slower pacing */
+      height: 12000px; /* Extended height for slow pacing */
       position: relative;
     }
+
     .scene {
       position: fixed;
       top: 0;
@@ -23,6 +26,8 @@
       height: 100vh;
       overflow: hidden;
     }
+
+    /* Background Elements */
     .night-sky, .day-sky {
       position: absolute;
       top: 0;
@@ -32,13 +37,16 @@
       background-size: cover;
       z-index: 0;
     }
+
     .night-sky {
       background: url('assets/night_sky.png') repeat-x;
     }
+
     .day-sky {
       background: url('assets/day_sky.png') repeat-x;
       opacity: 0;
     }
+
     .road {
       position: absolute;
       bottom: 0;
@@ -49,16 +57,22 @@
       background-size: contain;
       z-index: 1;
     }
+
+    /* Stars for twinkling effect */
     .star {
       position: absolute;
       width: 5px;
       height: 5px;
       background: white;
+      border-radius: 50%;
       opacity: 1;
     }
+
     .star1 { top: 10vh; left: 20vw; }
     .star2 { top: 15vh; left: 50vw; }
     .star3 { top: 5vh; left: 70vw; }
+
+    /* Celestial Elements */
     .moon {
       position: absolute;
       top: 5vh;
@@ -67,6 +81,7 @@
       height: 100px;
       z-index: 1;
     }
+
     .sun {
       position: absolute;
       top: 5vh;
@@ -76,71 +91,80 @@
       z-index: 1;
       opacity: 0;
     }
+
+    /* Clouds */
     .cloud {
       position: absolute;
       width: 200px;
       height: 100px;
       z-index: 1;
     }
+
     .cloud1 { top: 15vh; left: 10vw; }
     .cloud2 { top: 20vh; left: 40vw; }
 
-
+    /* Characters and Objects */
     .degen {
       position: absolute;
       bottom: 20vh;
-      left: -15vw;
-      width: 300px;
-      height: 480px;
+      left: -40vw;
+      width: 100px;
+      height: 160px;
       z-index: 2;
     }
+
     .degen-transformed {
       position: absolute;
       bottom: 20vh;
-      left: -15vw;
-      width: 300px;
-      height: 480px;
+      left: 45vw;
+      width: 100px;
+      height: 160px;
       z-index: 2;
       opacity: 0;
     }
+
     .castle {
       position: absolute;
       bottom: 20vh;
-      left: 115vw;
-      width: 400px;
-      height: 480px;
+      left: 140vw;
+      width: 200px;
+      height: 240px;
       z-index: 2;
     }
+
     .wizard {
       position: absolute;
       bottom: 20vh;
-      left: 115vw;
-      width: 300px;
-      height: 480px;
+      left: 140vw;
+      width: 100px;
+      height: 160px;
       z-index: 3;
     }
+
     .level-up {
       position: absolute;
       top: 30vh;
       left: 50%;
       transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
+      width: 200px;
+      height: 200px;
       z-index: 5;
       opacity: 0;
     }
+
     .poof {
       position: absolute;
       bottom: 20vh;
       left: 45vw;
-      width: 680px;
-      height: 680px;
+      width: 160px;
+      height: 160px;
       background: white;
       border-radius: 50%;
       z-index: 4;
       opacity: 0;
       transform: scale(0);
     }
+
     .treasure-chest {
       position: absolute;
       bottom: 20vh;
@@ -150,26 +174,32 @@
       z-index: 3;
       opacity: 0;
     }
+
     .sports-car {
       position: absolute;
       bottom: 10vh;
       left: -40vw;
-      width: 750px;
-      height: 375px;
+      width: 450px;
+      height: 225px;
       z-index: 3;
     }
+
     .occupied-sports-car {
       position: absolute;
       bottom: 10vh;
       left: 40vw;
-      width: 750px;
-      height: 375px;
+      width: 450px;
+      height: 225px;
       z-index: 3;
       opacity: 0;
     }
+
+    /* Image Styling */
     img {
       image-rendering: pixelated;
     }
+
+    /* Lead Form */
     #lead-form {
       height: 100vh;
       background: #fff;
@@ -179,21 +209,32 @@
       position: relative;
       z-index: 10;
     }
+
     #lead-form form {
       text-align: center;
     }
+
     #lead-form input {
       display: block;
       margin: 10px auto;
       padding: 10px;
       width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
+
     #lead-form button {
       padding: 10px 20px;
       background: #4CAF50;
       color: white;
       border: none;
+      border-radius: 4px;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #lead-form button:hover {
+      background: #45a049;
     }
   </style>
 </head>
@@ -223,9 +264,9 @@
   </div>
   <div id="lead-form">
     <form>
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
+      <h2>Sign Up Now!</h2>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -235,108 +276,142 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Twinkle stars
-    gsap.to(".star1", { opacity: 0.5, repeat: -1, yoyo: true, duration: 2, ease: "power1.inOut" });
-    gsap.to(".star2", { opacity: 0.5, repeat: -1, yoyo: true, duration: 2.5, ease: "power1.inOut" });
-    gsap.to(".star3", { opacity: 0.5, repeat: -1, yoyo: true, duration: 2.2, ease: "power1.inOut" });
+    // Twinkle stars for ambiance
+    gsap.to(".star1", { 
+      opacity: 0.5, 
+      repeat: -1, 
+      yoyo: true, 
+      duration: 2, 
+      ease: "power1.inOut" 
+    });
+    gsap.to(".star2", { 
+      opacity: 0.5, 
+      repeat: -1, 
+      yoyo: true, 
+      duration: 2.5, 
+      ease: "power1.inOut" 
+    });
+    gsap.to(".star3", { 
+      opacity: 0.5, 
+      repeat: -1, 
+      yoyo: true, 
+      duration: 2.2, 
+      ease: "power1.inOut" 
+    });
 
-    // Drift clouds slowly, independent of scroll
-    gsap.to(".cloud1", { x: "-200vw", duration: 120, repeat: -1, ease: "linear" });
-    gsap.to(".cloud2", { x: "-200vw", duration: 140, repeat: -1, ease: "linear" });
+    // Clouds autoscroll very slowly
+    gsap.to(".cloud1", { 
+      x: "-200vw", 
+      duration: 240, 
+      repeat: -1, 
+      ease: "linear" 
+    });
+    gsap.to(".cloud2", { 
+      x: "-200vw", 
+      duration: 280, 
+      repeat: -1, 
+      ease: "linear" 
+    });
 
-    // Background and floor parallax
+    // Parallax background and floor movement
     gsap.to(".night-sky, .day-sky", {
       x: "-50vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 10000,
+        end: 12000,
         scrub: 3
       }
     });
+
     gsap.to(".road", {
       x: "-100vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 10000,
+        end: 12000,
         scrub: 3
       }
     });
 
-    // Initial movements (0 to 4000px)
+    // Initial movement phase (0 to 8000px)
     gsap.to(".degen", {
       left: "45vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 4000,
+        end: 8000,
         scrub: 3
       }
     });
+
     gsap.to(".castle", {
       left: "70vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 4000,
+        end: 8000,
         scrub: 3
       }
     });
+
     gsap.to(".wizard", {
       left: "55vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 4000,
+        end: 8000,
         scrub: 3
       }
     });
+
     gsap.to(".moon", {
       left: "75vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
         start: 0,
-        end: 4000,
+        end: 8000,
         scrub: 3
       }
     });
 
-    // Level Up sequence (4200 to 4500px)
+    // Level Up sequence with pause (8200 to 8500px)
     gsap.to(".level-up", {
       opacity: 1,
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: 4200,
-        end: 4300,
-        scrub: 1
-      }
-    });
-    gsap.to(".level-up", {
-      opacity: 0,
-      scrollTrigger: {
-        trigger: "#scroll-container",
-        start: 4400,
-        end: 4500,
+        start: 8200,
+        end: 8300,
         scrub: 1
       }
     });
 
-    // Transformation sequence (4500 to 5000px)
-    const transformTimeline = gsap.timeline({
+    gsap.to(".level-up", {
+      opacity: 0,
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: 4500,
-        end: 5000,
+        start: 8400,
+        end: 8500,
         scrub: 1
       }
     });
+
+    // Transformation sequence (8600 to 9000px)
+    const transformTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#scroll-container",
+        start: 8600,
+        end: 9000,
+        scrub: 1
+      }
+    });
+
     transformTimeline
       .to(".poof", { opacity: 1, scale: 1.5, duration: 0.5 })
       .to(".degen", { opacity: 0, duration: 0.5 }, "<")
@@ -346,76 +421,79 @@
       .to(".day-sky", { opacity: 1, duration: 1 }, "<")
       .to(".sun", { left: "75vw", opacity: 1, duration: 1 }, "<")
       .to(".poof", { opacity: 0, scale: 0, duration: 0.5 })
-      .to(".treasure-chest", { opacity: 1, left: "50vw", duration: 1 }, "<")
-      .to(".degen-transformed", { left: "40vw", duration: 1 }, "<")
+      .to(".treasure-chest", { opacity: 1, duration: 1 })
+      .to(".degen-transformed", { left: "40vw", duration: 1 }, "-=0.5")
       .to(".wizard", { left: "60vw", duration: 1 }, "<");
 
-    // Sports car movement (5100 to 5500px)
+    // Sports car movement (9100 to 9500px)
     gsap.to(".sports-car", {
       left: "40vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: 5100,
-        end: 5500,
+        start: 9100,
+        end: 9500,
         scrub: 3
       }
     });
 
-    // Car transformation (5600 to 5800px)
+    // Car transformation (9600 to 9800px)
     const carTransformTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: 5600,
-        end: 5800,
+        start: 9600,
+        end: 9800,
         scrub: 1
       }
     });
+
     carTransformTimeline
       .to(".degen-transformed", { opacity: 0, duration: 1.5 })
-      .to(".sports-car", { opacity: 0, duration: 0.25 }, "<") // Fixed typo
+      .to(".sports-car", { opacity: 0, duration: 0.25 }, "<")
       .to(".occupied-sports-car", { opacity: 1, duration: 0.25 }, "<");
 
-    // Drive past Wizard and Castle (5900 to 7500px)
+    // Drive past sequence (9900 to 11500px)
     gsap.to(".occupied-sports-car", {
-      left: "115vw", // Move car off-screen to the right
+      left: "115vw",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: 5900,
-        end: 7500,
-        scrub: 3
-      }
-    });
-    gsap.to(".wizard", {
-      left: "-15vw", // Move off-screen to the left
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#scroll-container",
-        start: 5900,
-        end: 7500,
-        scrub: 3
-      }
-    });
-    gsap.to(".castle", {
-      left: "-15vw", // Move off-screen to the left
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#scroll-container",
-        start: 5900,
-        end: 7500,
+        start: 9900,
+        end: 11500,
         scrub: 3
       }
     });
 
-    // Transition to lead form (7600 to 8000px)
+    gsap.to(".wizard", {
+      left: "-40vw",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#scroll-container",
+        start: 9900,
+        end: 11500,
+        scrub: 3
+      }
+    });
+
+    gsap.to(".castle", {
+      left: "-40vw",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#scroll-container",
+        start: 9900,
+        end: 11500,
+        scrub: 3
+      }
+    });
+
+    // Transition to lead form (11600 to 12000px)
     gsap.to(".scene", {
       top: "-100vh",
       ease: "none",
       scrollTrigger: {
         trigger: "#scroll-container",
-        start: 7600,
-        end: 8000,
+        start: 11600,
+        end: 12000,
         scrub: 1
       }
     });
